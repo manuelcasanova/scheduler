@@ -14,7 +14,7 @@ export default function DayListItem(props) {
     if (spots === 1) return "1 spot remaining";
     if (spots > 1) return `${spots} spots remaining`
   }
-  
+    
   return (
     <li className ={dayClass} 
     selected={props.selected} 
