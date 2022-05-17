@@ -37,9 +37,10 @@ export default function Application(props) {
 <nav className="sidebar__menu">
   <DayList 
   days={days} 
-  day={day} 
-  setDay={setDay} />
+  value={day} // refactored from day={day} 
+  onChange={setDay} /> 
 </nav>
+{/* refactored from "setDay={setDay} /> */}
 <img
   className="sidebar__lhl sidebar--centered"
   src="images/lhl.png"

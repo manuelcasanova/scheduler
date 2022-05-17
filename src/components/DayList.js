@@ -45,8 +45,8 @@ export default function DayList(props) {
             key={dayOfWeek.id}
             name={dayOfWeek.name}
             spots={dayOfWeek.spots}
-            selected={dayOfWeek.name === props.day}
-            setDay={props.setDay}
+            selected={dayOfWeek.name === props.value} //Refactored from .day
+            setDay={props.onChange} //Refactored from .setDay
             />
           );
       })}
