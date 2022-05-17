@@ -13,6 +13,7 @@ import InterviewerList from "components/InterviewerList"
 import Appointment from "components/Appointment/index.js";
 import Header from "components/Appointment/Header.js";
 import Empty from "components/Appointment/Empty.js";
+import Show from "components/Appointment/Show.js";
 
 storiesOf("Button", module)
   .addParameters({
@@ -152,11 +153,8 @@ storiesOf("DayList", module)
         .add("Appointment", () => <Appointment />)
         .add("Appointment with time", () => <Appointment time="12pm"/>)
         .add("Header", () => <Header time="12pm"/>)
-        .add("Empty", () => 
-        <Empty
-        onAdd={action("onAdd")}
-        />
-        )
+        .add("Empty", () => <Empty onAdd={action("onAdd")}/>)
+        .add("Show", () => <Show onEdit={action("onEdit")} onDelete={action("onDelete")}/>)
 
 
         
