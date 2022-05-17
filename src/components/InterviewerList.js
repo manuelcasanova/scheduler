@@ -11,10 +11,13 @@ export default function InterviewerList (props) {
       // id={interviewer.id} See refactor below
       name={interviewer.name}
       avatar={interviewer.avatar}
-      selected={interviewer.id === props.interviewer}
+      // Refactored from selected={interviewer.id === props.interviewer}
+      selected={interviewer.id === props.value}
       // Refactored from
       // setInterviewer={props.setInterviewer}
-      setInterviewer={() => props.setInterviewer(interviewer.id)}
+      // And later refactored from
+      // setInterviewer={() => props.setInterviewer(interviewer.id)}
+      setInterviewer={() => props.onChange(interviewer.id)}
     />
   )
   return (
