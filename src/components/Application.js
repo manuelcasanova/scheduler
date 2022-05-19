@@ -74,7 +74,11 @@ const appointmentsArray = Object.values(appointments);
 const schedule = appointmentsArray.map((oneAppointment) => {
   //console.log("appt", oneAppointment)
   return (
-    <Appointment key={oneAppointment.id} id={oneAppointment.id} time={oneAppointment.time} interview={oneAppointment.interview} />
+    // <Appointment key={oneAppointment.id} id={oneAppointment.id} time={oneAppointment.time} interview={oneAppointment.interview} />
+    <Appointment 
+  key={oneAppointment.id} 
+  {...oneAppointment} 
+/>
   )
 })
 
