@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import "components/Application.scss";
 import DayList from "./DayList";
-import "components/Appointment";
+import Appointment from "./Appointment";
 
 
 //Mock days data. Eventyally will be retrieved from an API
@@ -64,10 +64,21 @@ const appointments = {
   }
 };
 
-
-
 export default function Application(props) {
   const [day, setDay] = useState("Monday");
+
+// console.log(appointments)
+const appointmentsArray = Object.values(appointments);
+// console.log(appointmentsArray);
+
+const schedule = appointmentsArray.map((oneAppointment) => {
+  //console.log("appt", oneAppointment)
+  return (
+    <Appointment key={oneAppointment.id} id={oneAppointment.id} time={oneAppointment.time} interview={oneAppointment.interview} />
+  )
+})
+
+
   return (
     <main className="layout">
       <section className="sidebar">
@@ -91,8 +102,13 @@ export default function Application(props) {
 />
       </section>
       <section className="schedule">
-        {/* Replace this with the schedule elements durint the "The Scheduler" activity. */}
+        {schedule}
+        <Appointment key="last" time="5pm" />
       </section>
     </main>
   );
 }
+
+
+
+
