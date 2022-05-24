@@ -28,4 +28,12 @@ function getAppointmentsForDay(state, day) {
   
 }
 
-module.exports = { getAppointmentsForDay };
+function getInterview(state, interview) {
+  if(!interview) return null;
+  const filteredInterview = {};
+  filteredInterview.student = interview.student;
+  filteredInterview.interviewer = state.interviewers[interview.interviewer];
+  return filteredInterview;
+}
+
+module.exports = { getAppointmentsForDay, getInterview };
