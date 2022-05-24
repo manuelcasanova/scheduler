@@ -13,6 +13,13 @@ export default function useVisualMode(initial) {
     }
   }
 
-  return { mode, transition };
+  const back = () => {
+    if (history.length > 1) {
+      history.pop();
+      setMode(history[history.length - 1])
+    }
+  }
+
+  return { mode, transition, back };
 }
 
