@@ -3,6 +3,7 @@ import "components/Application.scss";
 import DayList from "./DayList";
 import Appointment from "./Appointment";
 import axios from "axios";
+import { getAppointmentsForDay } from "helpers/selectors";
 
 export default function Application(props) {
 
@@ -12,18 +13,23 @@ export default function Application(props) {
     appointments: {}
   });
 
-  const dailyAppointments = []
+  const dailyAppointments = getAppointmentsForDay(state, state.day)
+
+  const daysURL = 'http://localhost:8001/api/days';
+  const appointmentsURL = 'http://localhost:8001/api/appointments';
+  const interviewersURL = 'http://localhost:8001/api/interviewers'
   
   const setDay = day => setState({ ...state, day });
-  const setDays = days => setState(prev => ({ ...prev, days }));
+  // const setDays = days => setState(prev => ({ ...prev, days }));
 
   useEffect(() => {
-    const url = 'http://localhost:8001/api/days'
-    axios.get(url)
-      .then(res => {
-        setDays(res.data)
-      })
-      .catch(err => console.log(err))
+    Promise.all([
+      axios.get(daysURL),
+      axios.get(appointmentsURL),
+      axios.get(interviewersURL)
+    ]).then((all) => {
+      setState(prev => ({...prev, days:all[0].data, appointments:all[1].data, interviewers:all[2].data}))
+    })
   }, [])
 
 const schedule = dailyAppointments.map((oneAppointment) => {
