@@ -14,11 +14,31 @@ export default function useVisualMode(initial) {
   }
 
   const back = () => {
-    if (history.length > 1) {
-      history.pop();
-      setMode(history[history.length - 1])
-    }
-  }
+    let newHistory = [...history];
+   newHistory.pop(mode);
+   setHistory((prev) => newHistory);
+   if (history.length > 1) {
+     setMode((prev) => newHistory[(newHistory.length - 1)]);
+   }
+ };
+
+//  const back = () => {
+//   history.length - 1 &&
+//     setHistory(prev => {
+//       const newArr = [...prev];
+//       newArr.pop();
+//       setMode(newArr[newArr.length - 1]);
+//       return newArr;
+//     });
+// };
+
+//  function back() {
+//   if(history.length > 1) {
+//     setHistory(history.slice(0, -1));
+//     setMode(history[history.length-2]);
+//   }
+// }
+
 
   return { mode, transition, back };
 }
