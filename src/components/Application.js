@@ -35,6 +35,10 @@ export default function Application(props) {
     })
   }, [])
 
+  function bookInterview(id, interview) {
+    console.log(id, interview);
+  }
+
 const schedule = dailyAppointments.map((oneAppointment) => {
     const interview = getInterview(state, oneAppointment.interview); //Added in in activity "Retrieving interviewer data"
   return (
@@ -42,10 +46,10 @@ const schedule = dailyAppointments.map((oneAppointment) => {
   key={oneAppointment.id} 
   {...oneAppointment} 
   interview={interview}
+  bookInterview={bookInterview}
 />
   )
 })
-
 
   return (
     <main className="layout">
@@ -60,7 +64,8 @@ const schedule = dailyAppointments.map((oneAppointment) => {
   <DayList 
   days={state.days} 
   value={state.day} // refactored from day={day} 
-  onChange={setDay} /> 
+  onChange={setDay} 
+  bookInterview={bookInterview}/> 
 </nav>
 {/* refactored from "setDay={setDay} /> */}
 <img
@@ -71,7 +76,7 @@ const schedule = dailyAppointments.map((oneAppointment) => {
       </section>
       <section className="schedule">
         {schedule}
-        <Appointment key="last" time="5pm" />
+        <Appointment key="last" time="5pm" bookInterview={bookInterview} />
       </section>
     </main>
   );
