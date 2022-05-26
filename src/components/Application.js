@@ -14,7 +14,7 @@ export default function Application(props) {
     interviewers: {}
   });
 
-  console.log(state.interviewers);
+  //console.log(state.interviewers);
 
   const dailyAppointments = getAppointmentsForDay(state, state.day) //refactor from (state, state.day) to (state, day) in activity "Retrieving interviewer data"
 
