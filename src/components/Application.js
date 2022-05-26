@@ -65,7 +65,7 @@ const schedule = dailyAppointments.map((oneAppointment) => {
   days={state.days} 
   value={state.day} // refactored from day={day} 
   onChange={setDay} 
-  bookInterview={bookInterview}/> 
+/> 
 </nav>
 {/* refactored from "setDay={setDay} /> */}
 <img
