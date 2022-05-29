@@ -34,6 +34,13 @@ export default function Appointment(props) {
           });
         }
 
+        function deleteAppointment(name, interviewer) {
+          const interview = {
+            student: name,
+            interviewer
+          }
+        }
+
 return (
 
 
