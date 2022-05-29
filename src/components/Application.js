@@ -52,6 +52,10 @@ export default function Application(props) {
       })
   }
 
+  function cancelInterview(id, interview) {
+    console.log(id, interview);
+  }
+
 const interviewers = getInterviewersForDay(state, state.day);
 
 const schedule = dailyAppointments.map((oneAppointment) => {
@@ -63,6 +67,7 @@ const schedule = dailyAppointments.map((oneAppointment) => {
   interview={interview}
   interviewers={interviewers}
   bookInterview={bookInterview}
+  cancelInterview={cancelInterview}
 />
   )
 })
@@ -92,7 +97,7 @@ const schedule = dailyAppointments.map((oneAppointment) => {
       </section>
       <section className="schedule">
         {schedule}
-        <Appointment key="last" time="5pm" bookInterview={bookInterview} />
+        <Appointment key="last" time="5pm" bookInterview={bookInterview} cancelInterview={cancelInterview} />
       </section>
     </main>
   );
