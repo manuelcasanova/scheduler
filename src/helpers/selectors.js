@@ -55,4 +55,16 @@ function getInterview(state, interview) {
   return filteredInterview;
 }
 
-module.exports = { getAppointmentsForDay, getInterview, getInterviewersForDay };
+  //Used to update the spots in functions bookInterview and cancelInterview
+  function whichDay(day) {
+    const weekDay = {
+      Monday: 0,
+      Tuesday: 1,
+      Wednesday: 2,
+      Thursday: 3,
+      Friday: 4
+    }
+    return weekDay[day]
+  }
+
+module.exports = { getAppointmentsForDay, getInterview, getInterviewersForDay, whichDay };
