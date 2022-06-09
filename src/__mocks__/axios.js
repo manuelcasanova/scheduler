@@ -51,6 +51,8 @@ const fixtures = {
       avatar: "https://i.imgur.com/FK8V841.jpg"
     }
   }
+
+
 };
 
 const put = jest.fn((url, interview) => {
@@ -65,7 +67,10 @@ const put = jest.fn((url, interview) => {
     statusText: "No Content",
     }
   )
+
+
 });
+
 
 const get = jest.fn(url => {
   if (url === "http://localhost:8001/api/days") {
@@ -97,7 +102,8 @@ const get = jest.fn(url => {
 export default {
   defaults: { baseURL: "" },
   get,
-  put: jest.fn(url => {
+  put,
+  delete: jest.fn(url => {
     if (url === "http://localhost:8001/api/days") {
       return Promise.resolve({
         status: 200,
