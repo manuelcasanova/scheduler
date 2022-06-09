@@ -63,29 +63,22 @@ describe("Form", () => {
     expect(onSave).not.toHaveBeenCalled();
   });
 
-      //TEST NO PASSING. I don't understand why this should pass.
-  // it("can successfully save after trying to submit an empty student name", () => {
-  //   const onSave = jest.fn();
-  //   const { getByText, getByPlaceholderText, queryByText } = render(
-  //     <Form interviewers={interviewers} onSave={onSave} />
-  //   );
-  
-  //   fireEvent.click(getByText("Save"));
-  
-  //   expect(getByText(/student name cannot be blank/i)).toBeInTheDocument();
-  //   expect(onSave).not.toHaveBeenCalled();
-  
-  //   fireEvent.change(getByPlaceholderText("Enter Student Name"), {
-  //     target: { value: "Lydia Miller-Jones" }
-  //   });
-  
-  //   fireEvent.click(getByText("Save"));
-  
-  //   expect(queryByText(/student name cannot be blank/i)).toBeNull();
-  
-  //   expect(onSave).toHaveBeenCalledTimes(1);
-  //   expect(onSave).toHaveBeenCalledWith("Lydia Miller-Jones", null);
-  // });
+      //TEST now passing. The idea is: Try to save. Get error. Then put a name and try to save.
+  it("can successfully save after trying to submit an empty student name", () => {
+    const onSave = jest.fn();
+    const {getByText, getByPlaceholderText } = render (<Form interviewers={interviewers} onSave={onSave} student={null} interviewer={1} />)
+    fireEvent.click(getByText("Save"));
+
+    expect(getByText(/Student name cannot be blank/i)).toBeInTheDocument();
+    const input = getByPlaceholderText("Enter Student Name");
+
+    fireEvent.change(input, {target: {value: "Lydia Miller-Jones"}});
+    fireEvent.click(getByText("Save"));
+
+    expect(onSave).toHaveBeenCalledTimes(1);
+    expect(onSave).toHaveBeenCalledWith("Lydia Miller-Jones", 1);
+  })
+
 
   it("calls onCancel and resets the input field", () => {
     const onCancel = jest.fn();
@@ -93,6 +86,7 @@ describe("Form", () => {
       <Form
         interviewers={interviewers}
         name="Lydia Mill-Jones"
+        // interviewer={interviewers[0].id}
         onSave={jest.fn()}
         onCancel={onCancel}
       />
