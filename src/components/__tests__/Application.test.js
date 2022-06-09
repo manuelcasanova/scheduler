@@ -14,7 +14,7 @@ afterEach(cleanup);
 //   render(<Application />);
 // });
 
-describe("Form", () => {
+describe("Application", () => {
 
   //Test now passing (I changed the http:// in axios.js)
   it("defaults to Monday and changes the schedule when a new day is selected", () => {
@@ -56,7 +56,7 @@ describe("Form", () => {
     expect(getByText(day, "no spots remaining")).toBeInTheDocument();
   });
 
-  
+  /*
   
   it("loads data, cancels an interview and increases the spots remaining for Monday by 1", async () => {
 
@@ -77,9 +77,21 @@ describe("Form", () => {
   expect(getByText(appointment, "Delete the appointment?")).toBeInTheDocument();
 
   // 5. Click the "Confirm" button on the confirmation.
+  fireEvent.click(queryByText(appointment, "Confirm"));
+
   // 6. Check that the element with the text "Deleting" is displayed.
+  expect(getByText(appointment, "Deleting")).toBeInTheDocument();
+
   // 7. Wait until the element with the "Add" button is displayed.
   // 8. Check that the DayListItem with the text "Monday" also has the text "2 spots remaining".
+  await waitForElement(() => getByAltText(appointment, "Add"));
+  const day = getAllByTestId(container, "day").find(day =>
+    queryByText(day, "Monday")
+  );
+
+  expect(getByText(day, "2 spots remaining")).toBeInTheDocument();
+
+
 
 
   //In the solution we have added the debug function, which we destructure from the return function, to the end of our test. This way we can continue to verify that our DOM contains what we expect it to as we go through phase two of our test.
@@ -88,4 +100,5 @@ debug();
 
   });
 
+  */
 });
